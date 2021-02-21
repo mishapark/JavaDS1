@@ -1,3 +1,4 @@
+package Presentation;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -22,6 +23,9 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class mainApp extends JFrame {
 
@@ -49,6 +53,7 @@ public class mainApp extends JFrame {
 	 * Create the frame.
 	 */
 	public mainApp() {
+		setResizable(false);
 		setTitle("COVID-19 Record");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 421, 267);
@@ -180,6 +185,22 @@ public class mainApp extends JFrame {
 		});
 		btnSave.setBounds(253, 184, 89, 23);
 		contentPane.add(btnSave);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 405, 22);
+		contentPane.add(menuBar);
+		
+		JMenu mnView = new JMenu("View");
+		menuBar.add(mnView);
+		
+		JMenuItem mniRecord = new JMenuItem("Record");
+		mniRecord.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Record rec = new Record();
+				rec.setVisible(true);
+			}
+		});
+		mnView.add(mniRecord);
 	}
 }
 
