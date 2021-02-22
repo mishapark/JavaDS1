@@ -22,7 +22,6 @@ public class TextFileIO {
 		String fileContent = "";
 	
 		try{
-			FileReader filereader = new FileReader(myFile);
         	Scanner scan = new Scanner(myFile);
             while(scan.hasNextLine()){
             	fileContent = fileContent.concat(scan.nextLine() + "\n");

@@ -56,7 +56,7 @@ public class Record extends JFrame {
 		
 		JRadioButton rbCity = new JRadioButton("City");
 		buttonGroup.add(rbCity);
-		rbCity.setBounds(85, 18, 67, 23);
+		rbCity.setBounds(154, 18, 67, 23);
 		contentPane.add(rbCity);
 		
 		JRadioButton rbAll = new JRadioButton("All");
@@ -67,9 +67,13 @@ public class Record extends JFrame {
 		
 		JRadioButton rbDate = new JRadioButton("Date");
 		buttonGroup.add(rbDate);
-		rbDate.setBounds(154, 18, 67, 23);
+		rbDate.setBounds(85, 18, 67, 23);
 		contentPane.add(rbDate);
 		
+		JRadioButton rbCD = new JRadioButton("Date & City");
+		buttonGroup.add(rbCD);
+		rbCD.setBounds(217, 18, 109, 23);
+		contentPane.add(rbCD);
 		
 		txtSearch = new JTextField();
 		txtSearch.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -120,21 +124,25 @@ public class Record extends JFrame {
 				                		taSearch.append("\n");
 									}
 								}
+							} else if (rbCD.isSelected()) {
+								for	(Object s : split) {
+									String str = (String)s;
+									String[] splitArr = str.split(",");
+									String[] splitFind = findStr.split(",");
+									if(splitArr[0].contains(splitFind[0]) && splitArr[1].contains(splitFind[1])) {
+										taSearch.append(str.toString());
+				                		taSearch.append("\n");
+									}
+								}
 							}
 						}
-	                }
-//				
-				
-				
-				
-				
-				
-				
-				
+	                }	
 			}
 		});
 		btnFind.setBounds(237, 44, 89, 23);
 		contentPane.add(btnFind);
+		
+		
 		
 	}
 }
