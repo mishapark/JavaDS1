@@ -95,42 +95,39 @@ public class Record extends JFrame {
 				String findStr = txtSearch.getText();
 				taSearch.setText("");
 				
-				 	String info = TextFileIO.ReadFile();
-				 	String[] split = info.split("\n");
+				 	String wholeFile = TextFileIO.ReadFile();
+				 	String[] lines = wholeFile.split("\n");
 	                
 	                if (rbAll.isSelected()) {
-	                	for (Object s : split) {
-	                		taSearch.append(s.toString());
+	                	for (String line : lines) {
+	                		taSearch.append(line);
 	                		taSearch.append("\n");
 	                	}
 	                	
 	                } else {
 	            		if ((Validator.isPresent(txtSearch, "Search"))) {
 							if (rbDate.isSelected()) {
-								for	(Object s : split) {
-									String str = (String)s;
-									String[] splitArr = str.split(",");
-									if(splitArr[0].contains(findStr)) {
-										taSearch.append(str.toString());
+								for	(String line : lines) {
+									String[] lineData = line.split(",");
+									if(lineData[0].contains(findStr)) {
+										taSearch.append(line);
 				                		taSearch.append("\n");
 									}
 								}
 							} else if (rbCity.isSelected()) {
-								for	(Object s : split) {
-									String str = (String)s;
-									String[] splitArr = str.split(",");
-									if(splitArr[1].contains(findStr)) {
-										taSearch.append(str.toString());
+								for	(String line : lines) {
+									String[] lineData = line.split(",");
+									if(lineData[1].contains(findStr)) {
+										taSearch.append(line);
 				                		taSearch.append("\n");
 									}
 								}
 							} else if (rbCD.isSelected()) {
-								for	(Object s : split) {
-									String str = (String)s;
-									String[] splitArr = str.split(",");
+								for	(String line : lines) {
+									String[] lineData = line.split(",");
 									String[] splitFind = findStr.split(",");
-									if(splitArr[0].contains(splitFind[0]) && splitArr[1].contains(splitFind[1])) {
-										taSearch.append(str.toString());
+									if(lineData[0].contains(splitFind[0]) && lineData[1].contains(splitFind[1])) {
+										taSearch.append(line);
 				                		taSearch.append("\n");
 									}
 								}
