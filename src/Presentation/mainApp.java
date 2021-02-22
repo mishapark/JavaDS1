@@ -105,19 +105,6 @@ public class mainApp extends JFrame {
 		txtDate.setColumns(10);
 		
 		txtCity = new JTextField();
-//		txtCity.addKeyListener(new KeyAdapter() {
-//			@Override
-//			public void keyPressed(KeyEvent e) {
-//				char c = e.getKeyChar();
-//				if(!Character.isLetter(c) && c != '\b') {
-//					lblCityWarn.setText("Enter letters please");
-//					txtCity.setEditable(false);;
-//				} else {
-//					lblCityWarn.setText("");
-//					txtCity.setEditable(true);
-//				}
-//			}
-//		});
 		txtCity.setColumns(10);
 		txtCity.setBounds(87, 69, 132, 20);
 		contentPane.add(txtCity);
@@ -172,7 +159,7 @@ public class mainApp extends JFrame {
 						lblCityWarn.setText("");
 					}
 					
-					String entry = date + "," + city + "," + cases + "," + deaths + "," + recovered;
+					String entry = date + "," + city + "," + "Cases: " + cases + "," + "Deaths: " + deaths + "," + "Recovered: " + recovered;
 					
 					try {
 						TextFileIO.writeData(entry);

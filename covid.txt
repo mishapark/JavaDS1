@@ -1,9 +1,8 @@
-03/12/2001,Moscow,333,5,7
-03/12/2015,Moscow,3,13,7
-03/12/1956,LA,3,9,7
-03/12/2010,Washington,3,523,7
-03/12/2011,Washington,1,5,732
-03/12/2001,Montreal,3,5,7
-04/02/1994,Toronto,10,20,30
-02/15/2010,Toronto,4,4,12
-12/13/1998,Toronto,6,2,15
+03/12/2001,Moscow,Cases: 333,Deaths: 5,Recovered: 7
+03/12/2015,Moscow,Cases: 3,Deaths: 13,Recovered: 7
+03/12/1956,LA,Cases: 3,Deaths: 9,Recovered: 7
+03/12/2010,Washington,Cases: 3,Deaths: 523,Recovered: 7
+03/12/2011,Washington,Cases: 1,Deaths: 5,Recovered: 732
+03/12/2001,Montreal,Cases: 3,Deaths: 5,Recovered: 7
+04/02/1994,Toronto,Cases: 10,Deaths: 20,Recovered: 30
+02/15/2010,Toronto,Cases: 4,Deaths: 4,Recovered: 12
