@@ -133,12 +133,9 @@ public class mainApp extends JFrame {
 				int deaths = (int)spDeaths.getValue();
 				int recovered = (int)spRecovered.getValue();
 				
-				char[] cityVal = city.toCharArray();
 				boolean isLetter = false;
-				for(int i = 0; i < cityVal.length; i++) {
-					if(Character.isLetter(cityVal[i])) {
-						isLetter = true;
-					}
+				if (city.matches("(?<=\\s|^)[a-zA-Z]*(?=[.,;:]?\\s|$)")) {
+					isLetter = true;
 				}
 				
 				if(Validator.isPresent(txtDate, "Date") && Validator.isPresent(txtCity, "City")) {
@@ -152,11 +149,11 @@ public class mainApp extends JFrame {
 						return;
 					}
 					
-					if(!isLetter) {
+					if(isLetter) {
+						lblCityWarn.setText("");
+					} else {
 						lblCityWarn.setText("Enter letters please");
 						return;
-					} else {
-						lblCityWarn.setText("");
 					}
 					
 					String entry = date + "," + city + "," + "Cases: " + cases + "," + "Deaths: " + deaths + "," + "Recovered: " + recovered;
