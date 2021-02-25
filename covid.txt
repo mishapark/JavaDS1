@@ -6,3 +6,4 @@
 03/12/2001,Montreal,Cases: 3,Deaths: 5,Recovered: 7
 04/02/1994,Toronto,Cases: 10,Deaths: 20,Recovered: 30
 02/15/2010,Toronto,Cases: 4,Deaths: 4,Recovered: 12
+02/02/2020,Toronto, Cases: 8,Deaths: 8,Recovered: 2

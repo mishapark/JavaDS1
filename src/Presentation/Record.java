@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 //import Presentation.Validator;
+import Business.AppData;
 import data.TextFileIO;
 
 import javax.swing.JRadioButton;
@@ -99,7 +100,7 @@ public class Record extends JFrame {
 				 	String[] lines = wholeFile.split("\n");
 	                
 	                if (rbAll.isSelected()) {
-	                	for (String line : lines) {
+	                	for (String line : AppData.getAppData().readFile()) {
 	                		taSearch.append(line);
 	                		taSearch.append("\n");
 	                	}
@@ -107,7 +108,7 @@ public class Record extends JFrame {
 	                } else {
 	            		if ((Validator.isPresent(txtSearch, "Search"))) {
 							if (rbDate.isSelected()) {
-								for	(String line : lines) {
+								for	(String line : AppData.getAppData().readFile()) {
 									String[] lineData = line.split(",");
 									if(lineData[0].contains(findStr)) {
 										taSearch.append(line);
@@ -115,7 +116,7 @@ public class Record extends JFrame {
 									}
 								}
 							} else if (rbCity.isSelected()) {
-								for	(String line : lines) {
+								for	(String line : AppData.getAppData().readFile()) {
 									String[] lineData = line.split(",");
 									if(lineData[1].contains(findStr)) {
 										taSearch.append(line);
@@ -123,7 +124,7 @@ public class Record extends JFrame {
 									}
 								}
 							} else if (rbCD.isSelected()) {
-								for	(String line : lines) {
+								for	(String line : AppData.getAppData().readFile()) {
 									String[] lineData = line.split(",");
 									String[] splitFind = findStr.split(",");
 									if(lineData[0].contains(splitFind[0]) && lineData[1].contains(splitFind[1])) {

@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Business.AppData;
+import Business.CovidRecord;
 import data.TextFileIO;
 
 import javax.swing.JLabel;
@@ -132,40 +134,41 @@ public class mainApp extends JFrame {
 				int cases = (int)spCases.getValue();
 				int deaths = (int)spDeaths.getValue();
 				int recovered = (int)spRecovered.getValue();
-				
+
+				CovidRecord record = new CovidRecord(date, city, cases, deaths, recovered);
+
 				boolean isLetter = false;
-				if (city.matches("(?<=\\s|^)[a-zA-Z]*(?=[.,;:]?\\s|$)")) {
+				if (record.getCity().matches("(?<=\\s|^)[a-zA-Z]*(?=[.,;:]?\\s|$)")) {
 					isLetter = true;
 				}
-				
+
 				if(Validator.isPresent(txtDate, "Date") && Validator.isPresent(txtCity, "City")) {
-					
+
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu");
 					try {
 						lblDateWarn.setText("");
-						formatter.parse(date);
+						formatter.parse(record.getDate());
 					} catch (Exception e1) {
 						lblDateWarn.setText("Date format is MM/DD/YYYY");
 						return;
 					}
-					
+
 					if(isLetter) {
 						lblCityWarn.setText("");
 					} else {
 						lblCityWarn.setText("Enter letters please");
 						return;
 					}
-					
-					String entry = date + "," + city + "," + "Cases: " + cases + "," + "Deaths: " + deaths + "," + "Recovered: " + recovered;
-					
+
 					try {
-						TextFileIO.writeData(entry);
+						AppData.getAppData().writeRecord(record);
 						JOptionPane.showMessageDialog(null, "Data is saved");
 					} catch (IOException e1) {
 						JOptionPane.showMessageDialog(null, "Error! " + e1.getMessage());
 					}
 				}
 			}
+
 		});
 		btnSave.setBounds(253, 184, 89, 23);
 		contentPane.add(btnSave);
