@@ -56,43 +56,55 @@ public class mainApp extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 421, 267);
 		contentPane = new JPanel();
+		contentPane.setForeground(Color.WHITE);
+		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblDateWarn = new JLabel("");
-		lblDateWarn.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblDateWarn.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 17));
 		lblDateWarn.setForeground(Color.RED);
 		lblDateWarn.setBounds(236, 38, 153, 14);
 		contentPane.add(lblDateWarn);
 		
 		JLabel lblCityWarn = new JLabel("");
-		lblCityWarn.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblCityWarn.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 17));
 		lblCityWarn.setForeground(Color.RED);
 		lblCityWarn.setBounds(236, 73, 153, 14);
 		contentPane.add(lblCityWarn);
 		
 		JLabel lblDate = new JLabel("Date:");
+		lblDate.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblDate.setForeground(Color.WHITE);
 		lblDate.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDate.setBounds(10, 37, 71, 14);
 		contentPane.add(lblDate);
 		
 		JLabel lblCity = new JLabel("City:");
+		lblCity.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblCity.setForeground(Color.WHITE);
 		lblCity.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCity.setBounds(10, 73, 71, 14);
 		contentPane.add(lblCity);
 		
 		JLabel lblCases = new JLabel("Cases: ");
+		lblCases.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblCases.setForeground(Color.WHITE);
 		lblCases.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCases.setBounds(10, 109, 71, 14);
 		contentPane.add(lblCases);
 		
 		JLabel lblDeaths = new JLabel("Deaths:");
+		lblDeaths.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblDeaths.setForeground(Color.WHITE);
 		lblDeaths.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDeaths.setBounds(10, 146, 71, 14);
 		contentPane.add(lblDeaths);
 		
 		JLabel lblRecovered = new JLabel("Recovered:");
+		lblRecovered.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblRecovered.setForeground(Color.WHITE);
 		lblRecovered.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblRecovered.setBounds(10, 188, 71, 14);
 		contentPane.add(lblRecovered);
@@ -123,6 +135,8 @@ public class mainApp extends JFrame {
 		contentPane.add(spRecovered);
 		
 		JButton btnSave = new JButton("Save");
+		btnSave.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 18));
+		btnSave.setBackground(Color.WHITE);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//getting user's input
@@ -173,22 +187,6 @@ public class mainApp extends JFrame {
 		});
 		btnSave.setBounds(253, 184, 89, 23);
 		contentPane.add(btnSave);
-		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 405, 22);
-		contentPane.add(menuBar);
-		
-		JMenu mnView = new JMenu("View");
-		menuBar.add(mnView);
-		
-		JMenuItem mniRecord = new JMenuItem("Record");
-		mniRecord.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Record rec = new Record();
-				rec.setVisible(true);
-			}
-		});
-		mnView.add(mniRecord);
 	}
 }
 

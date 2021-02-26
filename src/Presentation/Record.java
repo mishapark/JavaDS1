@@ -10,6 +10,8 @@ import data.TextFileIO;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.awt.Color;
+import java.awt.Font;
 
 public class Record extends JFrame {
 
@@ -42,27 +44,41 @@ public class Record extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 379);
 		contentPane = new JPanel();
+		contentPane.setForeground(Color.WHITE);
+		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JRadioButton rbCity = new JRadioButton("City");
+		rbCity.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		rbCity.setForeground(Color.WHITE);
+		rbCity.setBackground(Color.DARK_GRAY);
 		buttonGroup.add(rbCity);
 		rbCity.setBounds(154, 18, 67, 23);
 		contentPane.add(rbCity);
 		
 		JRadioButton rbAll = new JRadioButton("All");
+		rbAll.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		rbAll.setForeground(Color.WHITE);
+		rbAll.setBackground(Color.DARK_GRAY);
 		buttonGroup.add(rbAll);
 		rbAll.setSelected(true);
 		rbAll.setBounds(25, 18, 58, 23);
 		contentPane.add(rbAll);
 		
 		JRadioButton rbDate = new JRadioButton("Date");
+		rbDate.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		rbDate.setForeground(Color.WHITE);
+		rbDate.setBackground(Color.DARK_GRAY);
 		buttonGroup.add(rbDate);
 		rbDate.setBounds(85, 18, 67, 23);
 		contentPane.add(rbDate);
 		
 		JRadioButton rbCD = new JRadioButton("Date & City");
+		rbCD.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		rbCD.setForeground(Color.WHITE);
+		rbCD.setBackground(Color.DARK_GRAY);
 		buttonGroup.add(rbCD);
 		rbCD.setBounds(217, 18, 109, 23);
 		contentPane.add(rbCD);
@@ -74,28 +90,40 @@ public class Record extends JFrame {
 		contentPane.add(txtSearch);
 		
 		JLabel lblSearch = new JLabel("Search");
+		lblSearch.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblSearch.setForeground(Color.WHITE);
 		lblSearch.setBounds(35, 48, 78, 14);
 		contentPane.add(lblSearch);
 		
 		JTextArea taSearch = new JTextArea();
+		taSearch.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
 		taSearch.setEditable(false);
 		JScrollPane sp = new JScrollPane(taSearch, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		sp.setBounds(25, 92, 375, 158);
 		contentPane.add(sp);
 		
 		JLabel lblCases = new JLabel("");
+		lblCases.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblCases.setForeground(Color.WHITE);
 		lblCases.setBounds(25, 266, 222, 14);
 		contentPane.add(lblCases);
 		
 		JLabel lblDeaths = new JLabel("");
+		lblDeaths.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblDeaths.setForeground(Color.WHITE);
 		lblDeaths.setBounds(25, 291, 253, 14);
 		contentPane.add(lblDeaths);
 		
 		JLabel lblRecovered = new JLabel("");
+		lblRecovered.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblRecovered.setForeground(Color.WHITE);
 		lblRecovered.setBounds(25, 316, 301, 14);
 		contentPane.add(lblRecovered);
 
 		JButton btnFind = new JButton("Find");
+		btnFind.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		btnFind.setForeground(new Color(0, 0, 0));
+		btnFind.setBackground(Color.WHITE);
 		btnFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String findStr = txtSearch.getText();
