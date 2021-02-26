@@ -49,7 +49,7 @@ public class Record extends JFrame {
 		setResizable(false);
 		setTitle("Record");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 379);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -87,22 +87,45 @@ public class Record extends JFrame {
 		contentPane.add(lblSearch);
 		
 		JTextArea taSearch = new JTextArea();
+		taSearch.setEditable(false);
 		taSearch.setBounds(25, 92, 375, 158);
 		contentPane.add(taSearch);
+		
+		JLabel lblCases = new JLabel("");
+		lblCases.setBounds(25, 266, 222, 14);
+		contentPane.add(lblCases);
+		
+		JLabel lblDeaths = new JLabel("");
+		lblDeaths.setBounds(25, 291, 253, 14);
+		contentPane.add(lblDeaths);
+		
+		JLabel lblRecovered = new JLabel("");
+		lblRecovered.setBounds(25, 316, 301, 14);
+		contentPane.add(lblRecovered);
 		
 		JButton btnFind = new JButton("Find");
 		btnFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String findStr = txtSearch.getText();
 				taSearch.setText("");
+				int cases = 0;
+				int deaths = 0;
+				int recovered = 0;
 				
-				 	String wholeFile = TextFileIO.ReadFile();
-				 	String[] lines = wholeFile.split("\n");
 	                
 	                if (rbAll.isSelected()) {
 	                	for (String line : AppData.getAppData().readFile()) {
-	                		taSearch.append(line);
+	                		String[] lineData = line.split(",");
+							taSearch.append(line);
 	                		taSearch.append("\n");
+	                		
+	                		cases += Integer.parseInt(lineData[2]);
+	                		lblCases.setText("Total cases: " + cases);
+	                		deaths += Integer.parseInt(lineData[3]);
+	                		lblDeaths.setText("Total deaths: " + deaths);
+	                		recovered += Integer.parseInt(lineData[4]);
+	                		lblRecovered.setText("Total recovered: " + recovered);
+
 	                	}
 	                	
 	                } else {
@@ -113,6 +136,13 @@ public class Record extends JFrame {
 									if(lineData[0].contains(findStr)) {
 										taSearch.append(line);
 				                		taSearch.append("\n");
+				                		
+				                		cases += Integer.parseInt(lineData[2]);
+				                		lblCases.setText("Total cases: " + cases);
+				                		deaths += Integer.parseInt(lineData[3]);
+				                		lblDeaths.setText("Total deaths: " + deaths);
+				                		recovered += Integer.parseInt(lineData[4]);
+				                		lblRecovered.setText("Total recovered: " + recovered);
 									}
 								}
 							} else if (rbCity.isSelected()) {
@@ -121,6 +151,13 @@ public class Record extends JFrame {
 									if(lineData[1].contains(findStr)) {
 										taSearch.append(line);
 				                		taSearch.append("\n");
+				                		
+				                		cases += Integer.parseInt(lineData[2]);
+				                		lblCases.setText("Total cases: " + cases);
+				                		deaths += Integer.parseInt(lineData[3]);
+				                		lblDeaths.setText("Total deaths: " + deaths);
+				                		recovered += Integer.parseInt(lineData[4]);
+				                		lblRecovered.setText("Total recovered: " + recovered);
 									}
 								}
 							} else if (rbCD.isSelected()) {
@@ -130,6 +167,13 @@ public class Record extends JFrame {
 									if(lineData[0].contains(splitFind[0]) && lineData[1].contains(splitFind[1])) {
 										taSearch.append(line);
 				                		taSearch.append("\n");
+				                		
+				                		cases += Integer.parseInt(lineData[2]);
+				                		lblCases.setText("Total cases: " + cases);
+				                		deaths += Integer.parseInt(lineData[3]);
+				                		lblDeaths.setText("Total deaths: " + deaths);
+				                		recovered += Integer.parseInt(lineData[4]);
+				                		lblRecovered.setText("Total recovered: " + recovered);
 									}
 								}
 							}
@@ -139,6 +183,8 @@ public class Record extends JFrame {
 		});
 		btnFind.setBounds(237, 44, 89, 23);
 		contentPane.add(btnFind);
+		
+		
 		
 		
 		

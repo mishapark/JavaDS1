@@ -1,9 +1,11 @@
-03/12/2001,Moscow,Cases: 333,Deaths: 5,Recovered: 7
-03/11/2015,Moscow,Cases: 3,Deaths: 13,Recovered: 7
-03/10/1956,LA,Cases: 3,Deaths: 9,Recovered: 7
-03/09/2010,Washington,Cases: 3,Deaths: 523,Recovered: 7
-03/11/2011,Washington,Cases: 1,Deaths: 5,Recovered: 732
-03/12/2001,Montreal,Cases: 3,Deaths: 5,Recovered: 7
-04/02/1994,Toronto,Cases: 10,Deaths: 20,Recovered: 30
-02/15/2010,Toronto,Cases: 4,Deaths: 4,Recovered: 12
-02/02/2020,Toronto, Cases: 8,Deaths: 8,Recovered: 2
+03/12/2001,Moscow,333,5,200
+03/11/2015,Moscow,49,13,30
+03/10/1956,LA,30,9,15
+03/09/2010,Washington,90,52,30
+03/11/2011,Washington,100,5,90
+03/12/2001,Montreal,30,5,20
+04/02/1994,Toronto,100,20,50
+02/15/2010,Toronto,40,4,30
+02/02/2020,Toronto,80,8,62
+12/12/1998,Toronto,92,4,78
+

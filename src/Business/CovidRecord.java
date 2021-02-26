@@ -57,7 +57,7 @@ public class CovidRecord {
 
     @Override
     public String toString() {
-        return this.getDate() + "," + this.getCity() + ", " + "Cases: " + this.getCases() + "," + "Deaths: " + this.getDeaths() + "," + "Recovered: " + this.getRecovered();
+        return this.getDate() + "," + this.getCity() + ", " + this.getCases() + "," + this.getDeaths() + "," + this.getRecovered();
     }
 
 }
