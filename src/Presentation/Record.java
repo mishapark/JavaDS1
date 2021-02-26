@@ -1,24 +1,15 @@
 package Presentation;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 //import Presentation.Validator;
-import Business.AppData;
 import data.TextFileIO;
 
-import javax.swing.JRadioButton;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.ButtonGroup;
+import java.io.IOException;
 
 public class Record extends JFrame {
 
@@ -88,8 +79,9 @@ public class Record extends JFrame {
 		
 		JTextArea taSearch = new JTextArea();
 		taSearch.setEditable(false);
-		taSearch.setBounds(25, 92, 375, 158);
-		contentPane.add(taSearch);
+		JScrollPane sp = new JScrollPane(taSearch, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		sp.setBounds(25, 92, 375, 158);
+		contentPane.add(sp);
 		
 		JLabel lblCases = new JLabel("");
 		lblCases.setBounds(25, 266, 222, 14);
@@ -102,7 +94,7 @@ public class Record extends JFrame {
 		JLabel lblRecovered = new JLabel("");
 		lblRecovered.setBounds(25, 316, 301, 14);
 		contentPane.add(lblRecovered);
-		
+
 		JButton btnFind = new JButton("Find");
 		btnFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -114,67 +106,114 @@ public class Record extends JFrame {
 				
 	                
 	                if (rbAll.isSelected()) {
-	                	for (String line : AppData.getAppData().readFile()) {
-	                		String[] lineData = line.split(",");
-							taSearch.append(line);
-	                		taSearch.append("\n");
-	                		
-	                		cases += Integer.parseInt(lineData[2]);
-	                		lblCases.setText("Total cases: " + cases);
-	                		deaths += Integer.parseInt(lineData[3]);
-	                		lblDeaths.setText("Total deaths: " + deaths);
-	                		recovered += Integer.parseInt(lineData[4]);
-	                		lblRecovered.setText("Total recovered: " + recovered);
+	                	//Resetting labels
+						lblCases.setText("");
+						lblDeaths.setText("");
+						lblRecovered.setText("");
+	                	try {
+	                		//Show all the cases
+	                		Object[] lines = TextFileIO.findAll();
+	                		txtSearch.setText("");
 
-	                	}
+	                		for (Object line: lines) {
+								taSearch.append(line.toString());
+								taSearch.append("\n");
+
+								//Calculating total cases, total deaths and total recoveries
+								String[] lineData = line.toString().split(",");
+								cases += Integer.parseInt(lineData[2].toString());
+								lblCases.setText("Total cases: " + cases);
+								deaths += Integer.parseInt(lineData[3].toString());
+								lblDeaths.setText("Total deaths: " + deaths);
+								recovered += Integer.parseInt(lineData[4].toString());
+								lblRecovered.setText("Total recovered: " + recovered);
+							}
+						} catch (IOException ioException) {
+	                		//Print the error
+							ioException.printStackTrace();
+							JOptionPane.showMessageDialog(null, "Error! " + ioException.getMessage());
+						}
 	                	
 	                } else {
 	            		if ((Validator.isPresent(txtSearch, "Search"))) {
 							if (rbDate.isSelected()) {
-								for	(String line : AppData.getAppData().readFile()) {
-									String[] lineData = line.split(",");
-									if(lineData[0].contains(findStr)) {
-										taSearch.append(line);
-				                		taSearch.append("\n");
-				                		
-				                		cases += Integer.parseInt(lineData[2]);
+								//Resetting labels
+								lblCases.setText("");
+								lblDeaths.setText("");
+								lblRecovered.setText("");
+								try {
+									//Show only cases by specific date
+									Object[] lines = TextFileIO.findDate(txtSearch.getText());
+									for (Object line: lines) {
+										taSearch.append(line.toString());
+										taSearch.append("\n");
+
+										//Calculating total cases, total deaths and total recoveries
+										String[] lineData = line.toString().split(",");
+										cases += Integer.parseInt(lineData[2]);
 				                		lblCases.setText("Total cases: " + cases);
 				                		deaths += Integer.parseInt(lineData[3]);
 				                		lblDeaths.setText("Total deaths: " + deaths);
 				                		recovered += Integer.parseInt(lineData[4]);
 				                		lblRecovered.setText("Total recovered: " + recovered);
 									}
+								} catch (IOException ioException) {
+									//Print the error
+									ioException.printStackTrace();
+									JOptionPane.showMessageDialog(null, "Error! " + ioException.getMessage());
 								}
+
 							} else if (rbCity.isSelected()) {
-								for	(String line : AppData.getAppData().readFile()) {
-									String[] lineData = line.split(",");
-									if(lineData[1].contains(findStr)) {
-										taSearch.append(line);
-				                		taSearch.append("\n");
-				                		
-				                		cases += Integer.parseInt(lineData[2]);
-				                		lblCases.setText("Total cases: " + cases);
-				                		deaths += Integer.parseInt(lineData[3]);
-				                		lblDeaths.setText("Total deaths: " + deaths);
-				                		recovered += Integer.parseInt(lineData[4]);
-				                		lblRecovered.setText("Total recovered: " + recovered);
+								//Resetting labels
+								lblCases.setText("");
+								lblDeaths.setText("");
+								lblRecovered.setText("");
+								try {
+									//Show cases by city
+									Object[] lines = TextFileIO.findCity(txtSearch.getText());
+									for (Object line: lines) {
+										taSearch.append(line.toString());
+										taSearch.append("\n");
+
+										//Calculating total cases, total deaths and total recoveries
+										String[] lineData = line.toString().split(",");
+										cases += Integer.parseInt(lineData[2]);
+										lblCases.setText("Total cases: " + cases);
+										deaths += Integer.parseInt(lineData[3]);
+										lblDeaths.setText("Total deaths: " + deaths);
+										recovered += Integer.parseInt(lineData[4]);
+										lblRecovered.setText("Total recovered: " + recovered);
 									}
+								} catch (IOException ioException) {
+									//Print the error
+									ioException.printStackTrace();
+									JOptionPane.showMessageDialog(null, "Error! " + ioException.getMessage());
 								}
+
 							} else if (rbCD.isSelected()) {
-								for	(String line : AppData.getAppData().readFile()) {
-									String[] lineData = line.split(",");
-									String[] splitFind = findStr.split(",");
-									if(lineData[0].contains(splitFind[0]) && lineData[1].contains(splitFind[1])) {
-										taSearch.append(line);
-				                		taSearch.append("\n");
-				                		
-				                		cases += Integer.parseInt(lineData[2]);
-				                		lblCases.setText("Total cases: " + cases);
-				                		deaths += Integer.parseInt(lineData[3]);
-				                		lblDeaths.setText("Total deaths: " + deaths);
-				                		recovered += Integer.parseInt(lineData[4]);
-				                		lblRecovered.setText("Total recovered: " + recovered);
+								//Resetting labels
+								lblCases.setText("");
+								lblDeaths.setText("");
+								lblRecovered.setText("");
+								try {
+									//Searching cases by date and city
+									Object[] lines = TextFileIO.findDateAndCity(txtSearch.getText());
+									for (Object line: lines) {
+										taSearch.append(line.toString());
+										taSearch.append("\n");
+
+										String[] lineData = line.toString().split(",");
+										cases += Integer.parseInt(lineData[2]);
+										lblCases.setText("Total cases: " + cases);
+										deaths += Integer.parseInt(lineData[3]);
+										lblDeaths.setText("Total deaths: " + deaths);
+										recovered += Integer.parseInt(lineData[4]);
+										lblRecovered.setText("Total recovered: " + recovered);
 									}
+								} catch (IOException ioException) {
+									//Print the error
+									ioException.printStackTrace();
+									JOptionPane.showMessageDialog(null, "Error! " + ioException.getMessage());
 								}
 							}
 						}

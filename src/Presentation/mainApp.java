@@ -1,12 +1,10 @@
 package Presentation;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Business.AppData;
 import Business.CovidRecord;
 import data.TextFileIO;
 
@@ -19,8 +17,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JSpinner;
@@ -129,19 +125,23 @@ public class mainApp extends JFrame {
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//getting user's input
 				String date = txtDate.getText();
 				String city = txtCity.getText();
 				int cases = (int)spCases.getValue();
 				int deaths = (int)spDeaths.getValue();
 				int recovered = (int)spRecovered.getValue();
 
+				//putting user's input into the CovidRecord class (business layer)
 				CovidRecord record = new CovidRecord(date, city, cases, deaths, recovered);
 
+				//Validation of the city
 				boolean isLetter = false;
 				if (record.getCity().matches("(?<=\\s|^)[a-zA-Z]*(?=[.,;:]?\\s|$)")) {
 					isLetter = true;
 				}
 
+				//Validator
 				if(Validator.isPresent(txtDate, "Date") && Validator.isPresent(txtCity, "City")) {
 
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu");
@@ -160,8 +160,9 @@ public class mainApp extends JFrame {
 						return;
 					}
 
+					//Writing data to the file, using data layer
 					try {
-						AppData.getAppData().writeRecord(record);
+						TextFileIO.writeData(record.toString());
 						JOptionPane.showMessageDialog(null, "Data is saved");
 					} catch (IOException e1) {
 						JOptionPane.showMessageDialog(null, "Error! " + e1.getMessage());

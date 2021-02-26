@@ -1,12 +1,14 @@
 package Business;
 
 public class CovidRecord {
+    //fields
     private String date;
     private String city;
     private int cases;
     private int deaths;
     private int recovered;
 
+    //constructor
     public CovidRecord(String date, String city, int cases, int deaths, int recovered) {
         this.date = date;
         this.city = city;
@@ -15,6 +17,7 @@ public class CovidRecord {
         this.recovered = recovered;
     }
 
+    //get and set methods
     public String getDate() {
         return date;
     }
@@ -55,6 +58,7 @@ public class CovidRecord {
         this.recovered = recovered;
     }
 
+    //To string method that prints the object
     @Override
     public String toString() {
         return this.getDate() + "," + this.getCity() + "," + this.getCases() + "," + this.getDeaths() + "," + this.getRecovered();
